@@ -1,0 +1,27 @@
+base_user: gleidson
+base_packages:
+  - curl
+  - flameshot
+  - htop
+  - neofetch
+  - tmux
+  - vlc
+  - zsh
+
+docker_prerequisite_packages:
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin
+docker_service: docker
+docker_user: "{{ base_user }}"
+docker_group: docker
+
+nvm_repo_url: https://github.com/creationix/nvm.git
+nvm_path: "/home/{{ base_user }}/.nvm"
+node_version: 16

@@ -1,0 +1,14 @@
+---
+- name: Set up workstation
+  hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - installation
+
+    # - customization
+
+    # - system
+
+    # - projects

@@ -1,0 +1,37 @@
+- name: Install prerequisites
+  tags: docker, development, infra
+  apt:
+    update_cache: true
+    name: "{{ docker_prerequisite_packages }}"
+
+- name: Add Docker's GPG key
+  tags: docker, development, infra
+  apt_key: 
+    url: https://download.docker.com/linux/ubuntu/gpg
+
+- name: Set up Docker repository
+  tags: docker, development, infra
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install Docker binaries
+  tags: docker, development, infra
+  apt:
+    update_cache: true
+    name: "{{ docker_packages }}"
+    state: present
+  notify: Start docker service
+
+- name: Add user to docker's group
+  tags: docker, development, infra
+  user:
+    name: "{{ docker_user }}"
+    groups: "{{ docker_group }}"
+    append: yes
+
+- name: Verifying docker installation
+  tags: docker, development, infra
+  shell: "docker run hello-world"
+  args:
+    executable: /bin/bash
