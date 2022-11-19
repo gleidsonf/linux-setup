@@ -2,10 +2,12 @@
 
 - include_tasks: install_chrome.yaml
 
-# - include_tasks: install_vscode.yaml
+- include_tasks: install_vscode.yaml
 
 - include_tasks: install_docker.yaml
 
-# - include_tasks: install_nvm.yaml
+- include_tasks: install_nvm.yaml
 
 # - include_tasks: install_rvm.yaml
+
+- include_tasks: install_spotify.yaml

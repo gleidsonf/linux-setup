@@ -1,0 +1,16 @@
+- name: Add Spotify's GPG key
+  tags: streaming
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+
+- name: Set up Spotify repository
+  tags: streaming
+  apt_repository:
+    repo: "deb http://repository.spotify.com stable non-free"
+    state: present
+
+- name: Install Spotify client
+  tags: streaming
+  apt:
+    update_cache: true
+    name: spotify-client
