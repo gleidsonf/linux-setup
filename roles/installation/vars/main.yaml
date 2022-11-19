@@ -23,6 +23,15 @@ docker_service: docker
 docker_user: "{{ base_user }}"
 docker_group: docker
 
+ohmyzsh_plugin_base_url: "https://github.com/zsh-users/" 
+ohmyzsh_plugin_dir: "/home/{{ base_user }}/.oh-my-zsh/custom/plugins/"
+ohmyzsh_plugins:
+  - repo_url: "{{ ohmyzsh_plugin_base_url }}/zsh-syntax-highlighting.git"
+    dest: "{{ ohmyzsh_plugin_dir }}/zsh-syntax-highlighting"
+  - repo_url: "{{ ohmyzsh_plugin_base_url }}/zsh-autosuggestions.git"
+    dest: "{{ ohmyzsh_plugin_dir }}/zsh-autosuggestions"
+
+
 nvm_repo_url: https://github.com/creationix/nvm.git
 nvm_path: "/home/{{ base_user }}/.nvm"
 node_version: 16
