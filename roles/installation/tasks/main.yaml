@@ -8,7 +8,7 @@
 
 - include_tasks: install_zsh.yaml
 
-- include_tasks: install_nvm.yaml
+# - include_tasks: install_nvm.yaml
 
 # - include_tasks: install_rvm.yaml
 
