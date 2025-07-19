@@ -122,12 +122,12 @@ export CLOUDSDK_PYTHON=python2
 # Pulse audio restart
 alias pulse-restart="pulseaudio --kill && pulseaudio --start && pulseaudio --check"
 
-alias onvpn="sudo wg-quick up wg0"
-alias statusvpn="sudo wg show wg0"
-alias offvpn="sudo wg-quick down wg0"
+# alias onvpn="sudo wg-quick up wg0"
+# alias statusvpn="sudo wg show wg0"
+# alias offvpn="sudo wg-quick down wg0"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"

@@ -1,11 +1,11 @@
 # Starts and attach a docker container
 dca() {
-  docker-compose up --attach "$1"
+  docker compose up --attach "$1"
 }
 
 # Stop all services
 dcd() {
-  docker-compose down
+  docker compose down
 }
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

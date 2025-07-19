@@ -1,14 +1,37 @@
-- name: Add RVM's GPG key
-  shell: gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  args:
-    executable: /bin/bash
+- name: Install asdf-vm
+  become: yes
+  apt:
+    name: "git"
+    state: present
 
-- name: Install RVM binaries
-  shell: curl -sSL https://get.rvm.io | bash -s stable
-  args:
-    executable: /bin/bash
+- name: Download and install asdf-vm
+  become: yes
+  git:
+    repo: 'https://github.com/asdf-vm/asdf.git'
+    dest: '/home/{{ base_user }}/.asdf'
+    clone: yes
+    update: yes
+    version: master
 
-- name: Install Ruby 2.7
-  shell: "rvm install {{ ruby_version }}"
-  args:
-    executable: /bin/bash
+- name: Add asdf to .zshrc
+  become: yes
+  lineinfile:
+    path: "/home/{{ base_user }}/.zshrc"
+    regexp: '^# added by Ansible to configure asdf-vm'
+    line: 'export PATH="$HOME/.asdf/bin:$PATH"'
+  notify:
+    - Reload shell
+
+- name: Add the init script to .zshrc
+  become: yes
+  lineinfile:
+    path: "/home/{{ base_user }}/.zshrc"
+    regexp: '^# added by Ansible to initialize asdf-vm'
+    line: '. $HOME/.asdf/asdf.sh'
+  notify:
+    - Reload shell
+
+- name: Reload shell
+  become: yes
+  shell: source /home/{{ base_user }}/.zshrc
+  when: base_user != 'root'

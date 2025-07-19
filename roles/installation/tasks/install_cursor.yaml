@@ -1,0 +1,33 @@
+- name: Instalar dependência fuse (libfuse2)
+  become: yes
+  apt:
+    name: libfuse2
+    state: present
+    update_cache: yes
+
+- name: Baixar arquivo AppImage do Cursor
+  become: yes
+  get_url:
+    url: "{{ cursor_download_url }}"
+    dest: "/opt/cursor.AppImage"
+    mode: '0755'
+
+- name: Criar atalho desktop para Cursor
+  become: yes
+  copy:
+    dest: /usr/share/applications/cursor.desktop
+    content: |
+      [Desktop Entry]
+      Name=Cursor IDE
+      Exec=/opt/cursor.AppImage --no-sandbox
+      Icon=/opt/cursor.png
+      Type=Application
+      Categories=Development;IDE;
+      StartupWMClass=Cursor
+      
+- name: (Opcional) Colocar ícone no /opt
+  become: yes
+  copy:
+    src: files/cursor.png
+    dest: /opt/cursor.png
+    mode: '0644'
