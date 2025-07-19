@@ -19,14 +19,14 @@
     dest: "{{ item.dest }}"
   with_items: "{{ ohmyzsh_plugins }}"
 
-- name: Copy .zshrc file to user home folder 
-  tags: ohmyzsh
-  copy:
-    src: zshrc
-    dest: "/home/{{ base_user }}/.zshrc"
-    owner: "{{ base_user }}"
-    group: "{{ base_user }}"
-    mode: 0644
+# - name: Copy .zshrc file to user home folder 
+#   tags: ohmyzsh
+#   copy:
+#     src: zshrc
+#     dest: "/home/{{ base_user }}/.zshrc"
+#     owner: "{{ base_user }}"
+#     group: "{{ base_user }}"
+#     mode: 0644
 
 
 - name: Copy .zprofile file to user home folder 
